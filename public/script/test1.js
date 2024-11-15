@@ -32,7 +32,7 @@ console.log(`Viewport width: ${screenWidth}px`);
 console.log(`Viewport height: ${screenHeight}px`);
 
 // get api url from envrionment variable
-const apiUrl = 'http://localhost:8080';  // Now it correctly points to port 8080
+const apiUrl = 'http://18.232.82.178:8080';
 
 
 // At the touch start

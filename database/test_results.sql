@@ -1,10 +1,6 @@
--- Table: public.test_results
-
--- DROP TABLE IF EXISTS public.test_results;
-
 CREATE TABLE IF NOT EXISTS public.test_results
 (
-    id integer NOT NULL DEFAULT nextval('test_results_id_seq'::regclass),
+    id SERIAL PRIMARY KEY,
     participantid integer,
     blockno integer,
     coordx double precision,
@@ -21,11 +17,9 @@ CREATE TABLE IF NOT EXISTS public.test_results
     correctangle double precision,
     wrongangle double precision,
     err integer,
-    errorcorrected integer,
-    CONSTRAINT test_results_pkey PRIMARY KEY (id)
+    errorcorrected integer
 )
-
 TABLESPACE pg_default;
 
 ALTER TABLE IF EXISTS public.test_results
-    OWNER to postgres;
+    OWNER to zhanyijun

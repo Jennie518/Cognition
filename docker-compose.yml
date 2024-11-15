@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: zhanyijun
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: cognition_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/ec2-user/database:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "zhanyijun"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    # build: .
+    image: 727646471874.dkr.ecr.us-east-1.amazonaws.com/dcslab:latest 
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: db  
+      DB_USER: zhanyijun
+      DB_PASSWORD: 1234
+      DB_NAME: cognition_db
+    depends_on:
+      db:
+        condition: service_healthy
